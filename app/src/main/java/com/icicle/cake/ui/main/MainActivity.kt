@@ -1,7 +1,8 @@
-package com.icicle.cake
+package com.icicle.cake.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.icicle.cake.R
 
 class MainActivity : AppCompatActivity() {
 
