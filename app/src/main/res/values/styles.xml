@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PrimaryButtonOutlineStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/button_ripple_outline</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PrimaryEditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/round_rectangle</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:inputType">text</item>
+    </style>
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
+        android:orientation="vertical"
+        tools:ignore="Autofill,ContentDescription">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/cake_logo_white"
+            app:layout_constraintBottom_toTopOf="@id/idEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/idEditText"
+            style="@style/PrimaryEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/id"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintBottom_toTopOf="@id/pwEditText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <EditText
+            android:id="@+id/pwEditText"
+            style="@style/PrimaryEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:hint="@string/pw"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintBottom_toTopOf="@id/loginButton"
+            app:layout_constraintTop_toBottomOf="@id/idEditText" />
+
+        <Button
+            android:id="@+id/loginButton"
+            style="@style/PrimaryButtonOutlineStyle"
+            android:layout_width="match_parent"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="28dp"
+            android:text="@string/login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pwEditText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
