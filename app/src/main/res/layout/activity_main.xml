@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    android:background="@color/gray_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:ignore="ContentDescription">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:background="@android:color/white"
+        android:elevation="16dp"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            style="@style/PrimaryImageButtonStyle"
+            android:src="@drawable/ic_help_outline_24px"
+            android:tint="@color/icon_color" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:src="@drawable/cake_logo_color_hori" />
+
+        <ImageView
+            style="@style/PrimaryImageButtonStyle"
+            android:padding="3dp"
+            android:src="@drawable/ic_turn_off"
+            android:tint="@color/icon_color" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reservationRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/item_reservation_card" />
+</LinearLayout>

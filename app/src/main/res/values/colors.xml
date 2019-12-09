@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF00AA</color>
 
     <color name="colorSecondary">#FF00AA</color>
+
+    <color name="gray_background">#F6F5F5</color>
+    <color name="icon_color">#505050</color>
+    <color name="main_activity_status_bar_color">#D5D5D5</color>
+    <color name="card_text_color">#505050</color>
 </resources>

@@ -17,4 +17,13 @@
         <item name="android:elevation">4dp</item>
         <item name="android:inputType">text</item>
     </style>
+
+    <style name="PrimaryImageButtonStyle">
+        <item name="android:layout_width">@dimen/button_icon_size</item>
+        <item name="android:layout_height">@dimen/button_icon_size</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
 </resources>
