@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     android:background="@color/gray_background"
     android:fitsSystemWindows="true"
@@ -26,12 +27,28 @@
         android:paddingStart="48dp"
         android:paddingEnd="48dp" />
 
-    <com.rd.PageIndicatorView
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        app:piv_animationType="worm"
-        app:piv_selectedColor="@color/page_indicator_selected"
-        app:piv_unselectedColor="@color/page_indicator_unselected"
-        app:piv_viewPager="@id/viewPager" />
+        android:animateLayoutChanges="true"
+        android:paddingBottom="60dp">
+
+        <com.rd.PageIndicatorView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:piv_animationType="worm"
+            app:piv_selectedColor="@color/page_indicator_selected"
+            app:piv_unselectedColor="@color/page_indicator_unselected"
+            app:piv_viewPager="@id/viewPager" />
+
+        <Button
+            android:id="@+id/startButton"
+            style="@style/PrimaryButtonOutlineStyle"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/button_ripple_gradient"
+            android:text="@string/start"
+            android:visibility="invisible" />
+    </FrameLayout>
 </LinearLayout>
