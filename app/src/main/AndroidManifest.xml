@@ -27,6 +27,10 @@
             android:theme="@style/LoginTheme" />
 
         <activity
+            android:name=".ui.tutorial.TutorialActivity"
+            android:theme="@style/TutorialTheme" />
+
+        <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/MainTheme" />
 

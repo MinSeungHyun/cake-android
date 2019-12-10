@@ -10,4 +10,6 @@
     <color name="icon_color">#505050</color>
     <color name="main_activity_status_bar_color">#D5D5D5</color>
     <color name="card_text_color">#505050</color>
+    <color name="page_indicator_unselected">#505050</color>
+    <color name="page_indicator_selected">@color/colorAccent</color>
 </resources>

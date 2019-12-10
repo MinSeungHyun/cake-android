@@ -18,4 +18,8 @@
     <style name="MainTheme" parent="AppTheme">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+
+    <style name="TutorialTheme" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 </resources>
