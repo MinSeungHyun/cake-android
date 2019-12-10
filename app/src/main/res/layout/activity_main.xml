@@ -33,6 +33,7 @@
 
                 <ImageView
                     style="@style/PrimaryImageButtonStyle"
+                    android:onClick="@{() -> vm.onHelpButtonClick()}"
                     android:src="@drawable/ic_help_outline_24px"
                     android:tint="@color/icon_color" />
 
