@@ -7,9 +7,12 @@ import com.icicle.cake.R
 import com.icicle.cake.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
+    private val viewModel by lazy { LoginVIewModel(this) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding =
-            DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
+        DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login).apply {
+            vm = viewModel
+        }
     }
 }
