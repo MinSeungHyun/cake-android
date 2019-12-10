@@ -5,16 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.icicle.cake.R
 import com.icicle.cake.databinding.ActivityMainBinding
+import com.icicle.cake.ui.main.models.MainViewModel
 import com.icicle.cake.util.VerticalSpaceDecoration
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val recyclerViewAdapter by lazy { ReservationRecyclerAdapter() }
+    private val viewModel by lazy { MainViewModel() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main).apply {
-            reservationRecyclerView.adapter = recyclerViewAdapter
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        binding.reservationRecyclerView.apply {
+            adapter = ReservationRecyclerAdapter(viewModel)
             reservationRecyclerView.addItemDecoration(VerticalSpaceDecoration(64))
         }
     }

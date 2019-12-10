@@ -4,10 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.icicle.cake.databinding.ItemReservationCardBinding
+import com.icicle.cake.ui.main.models.MainViewModel
 import com.icicle.cake.ui.main.models.ReservationItem
+import com.icicle.cake.ui.main.util.OnReservationListChangeCallback
 
-class ReservationRecyclerAdapter : RecyclerView.Adapter<ReservationRecyclerAdapter.ReservationViewHolder>() {
-    private var items = ArrayList<ReservationItem>()
+class ReservationRecyclerAdapter(viewModel: MainViewModel) : RecyclerView.Adapter<ReservationRecyclerAdapter.ReservationViewHolder>() {
+    private val items = viewModel.reservationItems
+
+    init {
+        items.addOnListChangedCallback(OnReservationListChangeCallback(this))
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationViewHolder {
         val binding = ItemReservationCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,18 +28,7 @@ class ReservationRecyclerAdapter : RecyclerView.Adapter<ReservationRecyclerAdapt
         return items.size
     }
 
-    fun addItem(item: ReservationItem, position: Int = items.size) {
-        items.add(position, item)
-        notifyItemInserted(position)
-    }
-
-    fun removeItem(position: Int) {
-        items.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
-    class ReservationViewHolder(private val binding: ItemReservationCardBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ReservationViewHolder(private val binding: ItemReservationCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ReservationItem) {
             binding.item = item
