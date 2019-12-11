@@ -10,52 +10,53 @@
             type="com.icicle.cake.ui.main.models.MainViewModel" />
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:onRefreshListener="@{() -> vm.onRefresh()}"
-        app:refreshing="@{vm.isRefreshing}">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/gray_background"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            tools:ignore="ContentDescription">
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/app_bar_height"
+                android:background="@android:color/white"
+                android:elevation="16dp"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    style="@style/PrimaryImageButtonStyle"
+                    android:onClick="@{() -> vm.onHelpButtonClick()}"
+                    android:src="@drawable/ic_help_outline_24px"
+                    android:tint="@color/icon_color" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="28dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/cake_logo_color_hori" />
+
+                <ImageView
+                    style="@style/PrimaryImageButtonStyle"
+                    android:onClick="@{() -> vm.onLogoutButtonClick()}"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_turn_off"
+                    android:tint="@color/icon_color" />
+            </LinearLayout>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/gray_background"
-                android:fitsSystemWindows="true"
-                android:orientation="vertical"
-                tools:ignore="ContentDescription">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/app_bar_height"
-                    android:background="@android:color/white"
-                    android:elevation="16dp"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <ImageView
-                        style="@style/PrimaryImageButtonStyle"
-                        android:onClick="@{() -> vm.onHelpButtonClick()}"
-                        android:src="@drawable/ic_help_outline_24px"
-                        android:tint="@color/icon_color" />
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="28dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/cake_logo_color_hori" />
-
-                    <ImageView
-                        style="@style/PrimaryImageButtonStyle"
-                        android:onClick="@{() -> vm.onLogoutButtonClick()}"
-                        android:padding="3dp"
-                        android:src="@drawable/ic_turn_off"
-                        android:tint="@color/icon_color" />
-                </LinearLayout>
+                app:onRefreshListener="@{() -> vm.onRefresh()}"
+                app:refreshing="@{vm.isRefreshing}">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/reservationRecyclerView"
@@ -64,20 +65,20 @@
                     android:layout_weight="1"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_reservation_card" />
-            </LinearLayout>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </LinearLayout>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/fab_margin"
-                android:layout_marginBottom="@dimen/fab_margin"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="@{() -> vm.onCameraButtonClick()}"
-                android:src="@drawable/fab_camera_src"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> vm.onCameraButtonClick()}"
+            android:src="@drawable/fab_camera_src"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
