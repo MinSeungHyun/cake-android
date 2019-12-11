@@ -53,6 +53,7 @@ class LoginVIewModel(private val activity: Activity) {
         val userUid = result.user.uid
         preferenceManager.saveUserIdPw(UserIdPw(id.get()!!, password.get()!!))
         preferenceManager.saveUserUid(userUid)
+        preferenceManager.saveToken(result.token)
 
         FCMService.uploadToken(userUid, preferenceManager.loadFCMToken())
 

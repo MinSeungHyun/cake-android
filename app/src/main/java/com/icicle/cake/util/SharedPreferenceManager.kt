@@ -53,4 +53,13 @@ class SharedPreferenceManager(private val context: Context) {
     }
 
     fun loadIsTutorialSaw() = preference.getBoolean("is_tutorial_saw", false)
+
+    fun saveToken(token: String) {
+        preferenceEdit.apply {
+            putString("token", token)
+            apply()
+        }
+    }
+
+    fun loadToken() = preference.getString("token", "")
 }

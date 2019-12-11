@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
             .enqueue(object : Callback<CakeUserWithToken> {
                 override fun onResponse(call: Call<CakeUserWithToken>, response: Response<CakeUserWithToken>) {
                     val result = response.body()
-                    if (result?.token != null) onLoginSuccess()
+                    if (result?.token != null) onLoginSuccess(result)
                     else onLoginFailed()
                 }
 
@@ -40,7 +40,8 @@ class SplashActivity : AppCompatActivity() {
             })
     }
 
-    private fun onLoginSuccess() {
+    private fun onLoginSuccess(result: CakeUserWithToken) {
+        preferenceManager.saveToken(result.token)
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
