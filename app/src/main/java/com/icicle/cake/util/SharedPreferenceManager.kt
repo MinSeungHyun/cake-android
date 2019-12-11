@@ -13,10 +13,12 @@ class SharedPreferenceManager(private val context: Context) {
     }
     private val preferenceEdit by lazy { preference.edit() }
 
-    fun saveUserIdPw(userIdPw: UserIdPw) = preferenceEdit.apply {
-        putString("id", userIdPw.id)
-        putString("pw", userIdPw.pw)
-        apply()
+    fun saveUserIdPw(userIdPw: UserIdPw) {
+        preferenceEdit.apply {
+            putString("id", userIdPw.id)
+            putString("pw", userIdPw.pw)
+            apply()
+        }
     }
 
 
@@ -26,13 +28,22 @@ class SharedPreferenceManager(private val context: Context) {
         return UserIdPw(id, pw)
     }
 
-    fun saveFCMToken(token: String) = preferenceEdit.apply {
-        putString("fcm_token", token)
-        apply()
+    fun saveFCMToken(token: String) {
+        preferenceEdit.apply {
+            putString("fcm_token", token)
+            apply()
+        }
     }
 
 
-    fun loadFCMToken(): String {
-        return preference.getString("fcm_token", "") ?: ""
+    fun loadFCMToken(): String = preference.getString("fcm_token", "") ?: ""
+
+    fun saveUserIdx(userIdx: String) {
+        preferenceEdit.apply {
+            putString("user_idx", userIdx)
+            apply()
+        }
     }
+
+    fun loadUserIdx(): String = preference.getString("user_idx", "") ?: ""
 }

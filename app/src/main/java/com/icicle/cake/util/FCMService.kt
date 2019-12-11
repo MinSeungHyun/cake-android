@@ -18,10 +18,15 @@ class FCMService : FirebaseMessagingService() {
             }
         }
 
+        fun uploadToken(userIdx: String, token: String) {
+            val reference = FirebaseDatabase.getInstance().getReference("users")
+            reference.child(userIdx).setValue(token)
+        }
+
         private fun startTokenUpdateProgress(token: String, context: Context) {
             saveToken(token, context)
-            uploadToken(token)
-
+            val userIdx = getUserIdxIfAvailable(context)
+            if (userIdx.isNotBlank()) uploadToken(userIdx, token)
         }
 
         private fun saveToken(token: String, context: Context) {
@@ -29,9 +34,12 @@ class FCMService : FirebaseMessagingService() {
             preferenceManager.saveFCMToken(token)
         }
 
-        private fun uploadToken(token: String) {
-            val reference = FirebaseDatabase.getInstance().getReference("users")
-            reference.child("1696").setValue(token)
+        private fun getUserIdxIfAvailable(context: Context): String {
+            val preferenceManager = SharedPreferenceManager(context)
+            val userIdx = preferenceManager.loadUserIdx()
+            val password = preferenceManager.loadUserIdPw().pw
+            return if (userIdx.isNotBlank() && password.isNotBlank()) userIdx
+            else ""
         }
     }
 }

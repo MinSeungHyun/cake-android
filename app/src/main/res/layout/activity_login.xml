@@ -38,6 +38,7 @@
             android:hint="@string/id"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
+            android:text="@={vm.id}"
             app:layout_constraintBottom_toTopOf="@id/pwEditText"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.7"
@@ -53,6 +54,7 @@
             android:inputType="textPassword"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
+            android:text="@={vm.password}"
             app:layout_constraintBottom_toTopOf="@id/loginButton"
             app:layout_constraintTop_toBottomOf="@id/idEditText" />
 
@@ -76,6 +78,18 @@
             android:indeterminate="true"
             android:indeterminateTint="@android:color/white"
             android:visibility="@{vm.isLoginProgressive ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginButton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/login_failed"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:visibility="@{vm.isLoginFailed ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/loginButton" />

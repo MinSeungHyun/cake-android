@@ -4,6 +4,7 @@
     <string name="login">로그인</string>
     <string name="id">아이디</string>
     <string name="pw">비밀번호</string>
+    <string name="login_failed">로그인에 실패했습니다.</string>
     <string name="scan_qr">QR코드를 스캔해주세요.</string>
     <string name="start">시작하기</string>
     <string name="ok">확인</string>
