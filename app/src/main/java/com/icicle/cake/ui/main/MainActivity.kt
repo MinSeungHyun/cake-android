@@ -10,6 +10,7 @@ import com.icicle.cake.R
 import com.icicle.cake.databinding.ActivityMainBinding
 import com.icicle.cake.ui.main.models.MainViewModel
 import com.icicle.cake.ui.tutorial.TutorialActivity
+import com.icicle.cake.util.SharedPreferenceManager
 import com.icicle.cake.util.VerticalSpaceDecoration
 import com.icicle.cake.util.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,8 +30,12 @@ class MainActivity : AppCompatActivity() {
         }
         binding.vm = viewModel
 
-        startActivity(Intent(this, TutorialActivity::class.java))
+        if (isTutorialNotSaw())
+            startActivity(Intent(this, TutorialActivity::class.java))
     }
+
+    private fun isTutorialNotSaw() = !SharedPreferenceManager(this).loadIsTutorialSaw()
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)

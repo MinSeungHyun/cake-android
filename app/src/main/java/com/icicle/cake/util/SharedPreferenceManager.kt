@@ -44,4 +44,13 @@ class SharedPreferenceManager(private val context: Context) {
     }
 
     fun loadUserUid(): String = preference.getString("user_uid", "") ?: ""
+
+    fun saveIsTutorialSaw(isTutorialSaw: Boolean) {
+        preferenceEdit.apply {
+            putBoolean("is_tutorial_saw", isTutorialSaw)
+            apply()
+        }
+    }
+
+    fun loadIsTutorialSaw() = preference.getBoolean("is_tutorial_saw", false)
 }

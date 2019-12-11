@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.icicle.cake.R
+import com.icicle.cake.util.SharedPreferenceManager
 import kotlinx.android.synthetic.main.activity_tutorial.*
 
 val tutorialImageIds = listOf(
@@ -25,8 +26,13 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
             addOnPageChangeListener(this@TutorialActivity)
         }
 
-        startButton.setOnClickListener { finish() }
+        startButton.setOnClickListener {
+            saveTutorialSaw()
+            finish()
+        }
     }
+
+    private fun saveTutorialSaw() = SharedPreferenceManager(this).saveIsTutorialSaw(true)
 
     override fun onPageSelected(position: Int) {
         if (position == tutorialImageIds.size - 1) startButton.visibility = View.VISIBLE
