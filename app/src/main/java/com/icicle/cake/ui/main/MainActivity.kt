@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-                ?: return super.onActivityResult(requestCode, resultCode, data)
+            ?: return super.onActivityResult(requestCode, resultCode, data)
         result.contents?.let {
             viewModel.onCodeScanned(result.contents)
         }
