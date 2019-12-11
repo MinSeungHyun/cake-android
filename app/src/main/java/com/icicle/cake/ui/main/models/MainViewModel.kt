@@ -1,5 +1,6 @@
 package com.icicle.cake.ui.main.models
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -12,6 +13,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.icicle.cake.R
+import com.icicle.cake.models.CakeRoom
 import com.icicle.cake.models.CakeRooms
 import com.icicle.cake.ui.login.LoginActivity
 import com.icicle.cake.ui.tutorial.TutorialActivity
@@ -21,6 +23,8 @@ import com.icicle.cake.util.retrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainViewModel(private val activity: Activity) : ViewModel() {
     val reservationItems = ObservableArrayList<ReservationItem>()
@@ -91,10 +95,40 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
     private fun onLoadRoomsSuccess(result: CakeRooms) {
         reservationItems.clear()
         result.rooms.forEach {
-            val item = ReservationItem(it.date, it.times.toString(), it.room, it.desc, it.users.toString())
+            val date = getDateFromTimestamp(it.date.toLong())
+            val timeString = getTimeString(it)
+            val userString = getUserString(it)
+            val item = ReservationItem(date, timeString, it.room, it.desc, userString)
             reservationItems.add(item)
         }
         isRefreshing.set(false)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun getDateFromTimestamp(timeStamp: Long): String {
+        val date = Date(timeStamp)
+        val dateFormat = SimpleDateFormat("yyyy / MM / dd")
+        return dateFormat.format(date)
+    }
+
+    private fun getTimeString(cakeRoom: CakeRoom): String {
+        val timeString = StringBuilder()
+        cakeRoom.times.forEachIndexed { index, time ->
+            timeString.append(time)
+            if (index != cakeRoom.times.size - 1)
+                timeString.append("\n")
+        }
+        return timeString.toString()
+    }
+
+    private fun getUserString(cakeRoom: CakeRoom): String {
+        val userString = StringBuilder()
+        cakeRoom.users.forEachIndexed { index, roomUser ->
+            userString.append(roomUser.name)
+            if (index != cakeRoom.users.size - 1)
+                userString.append(", ")
+        }
+        return userString.toString()
     }
 
     private fun onLoadRoomsFailed() {

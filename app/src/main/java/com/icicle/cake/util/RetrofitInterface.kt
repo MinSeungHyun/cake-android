@@ -21,7 +21,7 @@ interface RetrofitInterface {
     @POST("/auth/login")
     fun login(@Body param: HashMap<String, String>): Call<CakeUserWithToken>
 
-    @GET("/room/mine")
+    @GET("/room/mine?mobile=true")
     fun getRooms(@Header("Authorization") token: String): Call<CakeRooms>
 
     @POST("/device/toggle")
