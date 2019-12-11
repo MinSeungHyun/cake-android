@@ -1,11 +1,12 @@
 package com.icicle.cake.ui.login.models
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import com.icicle.cake.ui.main.MainActivity
 
-class LoginVIewModel(private val context: Context) {
+class LoginVIewModel(private val activity: Activity) {
     fun onLoginButtonClick() {
-        context.startActivity(Intent(context, MainActivity::class.java))
+        activity.startActivity(Intent(activity, MainActivity::class.java))
+        activity.finish()
     }
 }
