@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.icicle.cake.R
 import com.icicle.cake.models.CakeRoom
 import com.icicle.cake.models.CakeRooms
+import com.icicle.cake.models.ROOM_DATA
 import com.icicle.cake.ui.login.LoginActivity
 import com.icicle.cake.ui.tutorial.TutorialActivity
 import com.icicle.cake.util.QRReader
@@ -168,21 +169,30 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
 
     inner class RoomChildEventListener : ChildEventListener {
         override fun onChildChanged(data: DataSnapshot, previousChildName: String?) {
-            if (data.value.toString().toBoolean()) {
-                val roomID = data.key
-                reservationItems.forEach {
-                    //if(it.roomName)
-                }
-                showDoorDialog(DoorRequestState.OPENED)
-            } else {
-                showDoorDialog(DoorRequestState.CLOSED)
-            }
+            val roomName = ROOM_DATA[data.key]
+            if (roomName == null || isNotUSerReservedRoom(roomName)) return
+
+            val isOpened = data.value.toString().toBoolean()
+            if (isOpened) showDoorDialog(DoorRequestState.OPENED)
+            else showDoorDialog(DoorRequestState.CLOSED)
         }
 
         override fun onCancelled(p0: DatabaseError) {}
         override fun onChildMoved(p0: DataSnapshot, p1: String?) {}
         override fun onChildAdded(p0: DataSnapshot, p1: String?) {}
         override fun onChildRemoved(p0: DataSnapshot) {}
+    }
+
+    private fun isUserReservedRoom(roomName: String): Boolean {
+        reservationItems.forEach {
+            if (roomName == it.roomName)
+                return true
+        }
+        return false
+    }
+
+    private fun isNotUSerReservedRoom(roomName: String): Boolean {
+        return !isUserReservedRoom(roomName)
     }
 
     private enum class DoorRequestState { OPENED, CLOSED, ERROR }
