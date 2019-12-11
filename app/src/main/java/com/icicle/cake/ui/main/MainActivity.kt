@@ -4,16 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.google.zxing.integration.android.IntentIntegrator
 import com.icicle.cake.R
 import com.icicle.cake.databinding.ActivityMainBinding
 import com.icicle.cake.ui.main.models.MainViewModel
 import com.icicle.cake.ui.tutorial.TutorialActivity
 import com.icicle.cake.util.VerticalSpaceDecoration
+import com.icicle.cake.util.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel by lazy { MainViewModel(this) }
+    private val viewModel by lazy { ViewModelProviders.of(this, ViewModelFactory(this))[MainViewModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
