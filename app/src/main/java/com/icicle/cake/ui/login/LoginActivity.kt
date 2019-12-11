@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.icicle.cake.R
 import com.icicle.cake.databinding.ActivityLoginBinding
+import com.icicle.cake.ui.login.models.LoginVIewModel
 
 class LoginActivity : AppCompatActivity() {
     private val viewModel by lazy { LoginVIewModel(this) }

@@ -1,4 +1,4 @@
-package com.icicle.cake.ui.login
+package com.icicle.cake.ui.login.models
 
 import android.content.Context
 import android.content.Intent
