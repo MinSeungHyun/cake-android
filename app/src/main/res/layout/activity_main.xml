@@ -51,6 +51,7 @@
 
                     <ImageView
                         style="@style/PrimaryImageButtonStyle"
+                        android:onClick="@{() -> vm.onLogoutButtonClick()}"
                         android:padding="3dp"
                         android:src="@drawable/ic_turn_off"
                         android:tint="@color/icon_color" />

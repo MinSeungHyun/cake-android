@@ -1,10 +1,12 @@
 package com.icicle.cake.ui.main.models
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import com.icicle.cake.R
+import com.icicle.cake.ui.login.LoginActivity
 import com.icicle.cake.ui.main.MainActivity
 import com.icicle.cake.ui.tutorial.TutorialActivity
 import com.icicle.cake.util.QRReader
@@ -25,8 +27,21 @@ class MainViewModel(private val activity: MainActivity) {
         activity.startActivity(Intent(activity, TutorialActivity::class.java))
     }
 
+    fun onLogoutButtonClick() {
+        AlertDialog.Builder(activity)
+            .setTitle(R.string.logout_check)
+            .setPositiveButton(R.string.logout) { _, _ -> logout() }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
+    }
+
     fun onRefresh() {
         isRefreshing.set(true)
         isRefreshing.set(false)
+    }
+
+    private fun logout() {
+        activity.startActivity(Intent(activity, LoginActivity::class.java))
+        activity.finish()
     }
 }
