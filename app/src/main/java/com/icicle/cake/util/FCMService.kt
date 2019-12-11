@@ -36,7 +36,7 @@ class FCMService : FirebaseMessagingService() {
 
         private fun getUserIdxIfAvailable(context: Context): String {
             val preferenceManager = SharedPreferenceManager(context)
-            val userIdx = preferenceManager.loadUserIdx()
+            val userIdx = preferenceManager.loadUserUid()
             val password = preferenceManager.loadUserIdPw().pw
             return if (userIdx.isNotBlank() && password.isNotBlank()) userIdx
             else ""

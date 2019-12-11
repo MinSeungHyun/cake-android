@@ -21,7 +21,6 @@ class SharedPreferenceManager(private val context: Context) {
         }
     }
 
-
     fun loadUserIdPw(): UserIdPw {
         val id = preference.getString("id", "") ?: ""
         val pw = preference.getString("pw", "") ?: ""
@@ -35,15 +34,14 @@ class SharedPreferenceManager(private val context: Context) {
         }
     }
 
-
     fun loadFCMToken(): String = preference.getString("fcm_token", "") ?: ""
 
-    fun saveUserIdx(userIdx: String) {
+    fun saveUserUid(userUid: String) {
         preferenceEdit.apply {
-            putString("user_idx", userIdx)
+            putString("user_uid", userUid)
             apply()
         }
     }
 
-    fun loadUserIdx(): String = preference.getString("user_idx", "") ?: ""
+    fun loadUserUid(): String = preference.getString("user_uid", "") ?: ""
 }
