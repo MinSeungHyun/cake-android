@@ -9,7 +9,7 @@ Cake Android
 <img src="images/splash_screen.png" width="360"/>
 
 ## LoginScreen
-여기서 로그인을 합니다.
+여기서 로그인을 합니다.  
 처음 로그인이라면 튜토리얼 화면으로, 아니면 메인 화면으로 넘어갑니다.
 
 <img src="images/login_screen.png" width="360"/>
