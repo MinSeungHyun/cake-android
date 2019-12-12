@@ -8,7 +8,7 @@ Cake Android
 <img src="images/login_screen.png" width="360"/>
 
 ## TutorialScreen
-<img src="images/tutorial_start_screen.png" width="360" style="float: right"/>
+<img src="images/tutorial_start_screen.png" width="360"/>
 <img src="images/tutorial_end_screen.png" width="360"/>
 
 ## MainScreen
