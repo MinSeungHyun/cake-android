@@ -14,5 +14,6 @@
     <string name="door_opened">문이 잠금해제 되었습니다!</string>
     <string name="door_closed">문이 닫혔습니다!</string>
     <string name="qr_post_failed">문을 열거나 닫는 데 실패했습니다.</string>
-    <string name="load_rooms_failed">방 목록을 불러오는 데 실패했습니다. 인터넷 연결을 확인해주세요.</string>
+    <string name="load_rooms_failed">예약 목록을 불러오는 데 실패했습니다. 인터넷 연결을 확인해주세요.</string>
+    <string name="no_reservations">예약한 실이 없어요.</string>
 </resources>
