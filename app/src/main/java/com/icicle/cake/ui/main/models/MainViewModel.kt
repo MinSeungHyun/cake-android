@@ -45,18 +45,19 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
         QRReader.startReader(activity, R.string.scan_qr)
     }
 
-    fun onCodeScanned(content: String) {
+    fun onCodeScanned(roomId: String) {
         isDoorRequested = true
+        val roomName = ROOM_DATA[roomId] ?: ""
         val uid = preferenceManager.loadUserUid()
-        retrofitService.postScannedQR(hashMapOf("room" to content, "user" to uid))
+        retrofitService.postScannedQR(hashMapOf("room" to roomId, "user" to uid))
             .enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    if (response.code() != 200) showDoorDialog(DoorRequestState.ERROR)
+                    if (response.code() != 200) showDoorDialog(roomName, DoorRequestState.ERROR)
                 }
 
                 override fun onFailure(call: Call<Void>, t: Throwable) {
                     t.printStackTrace()
-                    showDoorDialog(DoorRequestState.ERROR)
+                    showDoorDialog(roomName, DoorRequestState.ERROR)
                 }
             })
     }
@@ -157,14 +158,14 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
         stopDoorOpenListener()
     }
 
-    private fun showDoorDialog(status: DoorRequestState) {
+    private fun showDoorDialog(roomName: String, status: DoorRequestState) {
         val stringRes = when (status) {
             DoorRequestState.OPENED -> R.string.door_opened
             DoorRequestState.CLOSED -> R.string.door_closed
             else -> R.string.qr_post_failed
         }
         AlertDialog.Builder(activity)
-            .setTitle(stringRes)
+            .setTitle(activity.getString(stringRes).format(roomName))
             .setPositiveButton(R.string.ok, null)
             .show()
         isDoorRequested = false
@@ -176,8 +177,8 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
             if (roomName == null || !isUserRequestedRoom(roomName)) return
 
             val isOpened = data.value.toString().toBoolean()
-            if (isOpened) showDoorDialog(DoorRequestState.OPENED)
-            else showDoorDialog(DoorRequestState.CLOSED)
+            if (isOpened) showDoorDialog(roomName, DoorRequestState.OPENED)
+            else showDoorDialog(roomName, DoorRequestState.CLOSED)
         }
 
         override fun onCancelled(p0: DatabaseError) {}
