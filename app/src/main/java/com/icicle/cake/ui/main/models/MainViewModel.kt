@@ -34,6 +34,7 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
     private val reference = FirebaseDatabase.getInstance().reference.child("rooms")
     private val roomChildEventListener = RoomChildEventListener()
     private val preferenceManager = SharedPreferenceManager(activity)
+    private var isDoorRequested = false
 
     init {
         loadUserRooms()
@@ -45,6 +46,7 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
     }
 
     fun onCodeScanned(content: String) {
+        isDoorRequested = true
         val uid = preferenceManager.loadUserUid()
         retrofitService.postScannedQR(hashMapOf("room" to content, "user" to uid))
             .enqueue(object : Callback<Void> {
@@ -165,12 +167,13 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
             .setTitle(stringRes)
             .setPositiveButton(R.string.ok, null)
             .show()
+        isDoorRequested = false
     }
 
     inner class RoomChildEventListener : ChildEventListener {
         override fun onChildChanged(data: DataSnapshot, previousChildName: String?) {
             val roomName = ROOM_DATA[data.key]
-            if (roomName == null || isNotUSerReservedRoom(roomName)) return
+            if (roomName == null || !isUserRequestedRoom(roomName)) return
 
             val isOpened = data.value.toString().toBoolean()
             if (isOpened) showDoorDialog(DoorRequestState.OPENED)
@@ -183,16 +186,13 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
         override fun onChildRemoved(p0: DataSnapshot) {}
     }
 
-    private fun isUserReservedRoom(roomName: String): Boolean {
+    private fun isUserRequestedRoom(roomName: String): Boolean {
+        if (!isDoorRequested) return false
         reservationItems.forEach {
             if (roomName == it.roomName)
                 return true
         }
         return false
-    }
-
-    private fun isNotUSerReservedRoom(roomName: String): Boolean {
-        return !isUserReservedRoom(roomName)
     }
 
     private enum class DoorRequestState { OPENED, CLOSED, ERROR }
