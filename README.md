@@ -2,7 +2,7 @@ Cake Android
 ============
 [Last Release](https://github.com/MinSeungHyun/Cake/releases)
 ## SplashScreen
-![스플래시 화면 이미지](images/splash_screen.png)
+![스플래시 화면 이미지](images/splash_screen.png){: width="20" height="20"}
 ## LoginScreen
 ![로그인 화면 이미지](images/login_screen.png)
 ## TutorialScreen
