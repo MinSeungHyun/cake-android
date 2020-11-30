@@ -1,6 +1,5 @@
 package com.icicle.cake.ui.main.models
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -24,8 +23,6 @@ import com.icicle.cake.util.retrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MainViewModel(private val activity: Activity) : ViewModel() {
     val reservationItems = ObservableArrayList<ReservationItem>()
@@ -99,20 +96,13 @@ class MainViewModel(private val activity: Activity) : ViewModel() {
     private fun onLoadRoomsSuccess(result: CakeRooms) {
         reservationItems.clear()
         result.rooms.forEach {
-            val date = getDateFromTimestamp(it.date.toLong())
+            val date = it.date
             val timeString = getTimeString(it)
             val userString = getUserString(it)
             val item = ReservationItem(date, timeString, it.room, it.desc, userString)
             reservationItems.add(item)
         }
         isRefreshing.set(false)
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    private fun getDateFromTimestamp(timeStamp: Long): String {
-        val date = Date(timeStamp)
-        val dateFormat = SimpleDateFormat("yyyy / MM / dd")
-        return dateFormat.format(date)
     }
 
     private fun getTimeString(cakeRoom: CakeRoom): String {
