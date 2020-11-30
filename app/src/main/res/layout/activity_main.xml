@@ -37,7 +37,7 @@
                     style="@style/PrimaryImageButtonStyle"
                     android:onClick="@{() -> vm.onHelpButtonClick()}"
                     android:src="@drawable/ic_help_outline_24px"
-                    android:tint="@color/icon_color" />
+                    app:tint="@color/icon_color" />
 
                 <ImageView
                     android:layout_width="0dp"
@@ -50,7 +50,7 @@
                     android:onClick="@{() -> vm.onLogoutButtonClick()}"
                     android:padding="3dp"
                     android:src="@drawable/ic_turn_off"
-                    android:tint="@color/icon_color" />
+                    app:tint="@color/icon_color" />
             </LinearLayout>
 
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -95,6 +95,7 @@
             android:onClick="@{() -> vm.onCameraButtonClick()}"
             android:src="@drawable/fab_camera_src"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@null"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
