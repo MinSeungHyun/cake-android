@@ -5,8 +5,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.icicle.cake.R
+import com.icicle.cake.databinding.ActivityTutorialBinding
 import com.icicle.cake.util.SharedPreferenceManager
-import kotlinx.android.synthetic.main.activity_tutorial.*
 
 val tutorialImageIds = listOf(
     R.drawable.tutorial_1,
@@ -16,17 +16,19 @@ val tutorialImageIds = listOf(
 )
 
 class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
+    private val binding by lazy { ActivityTutorialBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tutorial)
+        setContentView(binding.root)
 
-        viewPager.apply {
+        binding.viewPager.apply {
             clipToPadding = false
             adapter = TutorialPagerAdapter(this@TutorialActivity)
             addOnPageChangeListener(this@TutorialActivity)
         }
 
-        startButton.setOnClickListener {
+        binding.startButton.setOnClickListener {
             saveTutorialSaw()
             finish()
         }
@@ -35,8 +37,8 @@ class TutorialActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
     private fun saveTutorialSaw() = SharedPreferenceManager(this).saveIsTutorialSaw(true)
 
     override fun onPageSelected(position: Int) {
-        if (position == tutorialImageIds.size - 1) startButton.visibility = View.VISIBLE
-        else startButton.visibility = View.INVISIBLE
+        if (position == tutorialImageIds.size - 1) binding.startButton.visibility = View.VISIBLE
+        else binding.startButton.visibility = View.INVISIBLE
     }
 
     override fun onPageScrollStateChanged(state: Int) {}

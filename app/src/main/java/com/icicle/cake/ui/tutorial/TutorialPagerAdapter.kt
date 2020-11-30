@@ -5,16 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import com.icicle.cake.R
-import kotlinx.android.synthetic.main.item_tutorial_card.view.*
+import com.icicle.cake.databinding.ItemTutorialCardBinding
 
 class TutorialPagerAdapter(private val context: Context) : PagerAdapter() {
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val inflater = LayoutInflater.from(context)
-        with(inflater.inflate(R.layout.item_tutorial_card, container, false)) {
+        with(ItemTutorialCardBinding.inflate(inflater, container, false)) {
             tutorialImage.setImageResource(tutorialImageIds[position])
-            container.addView(this)
-            return this
+            container.addView(root)
+            return root
         }
     }
 

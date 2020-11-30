@@ -13,7 +13,6 @@ import com.icicle.cake.ui.tutorial.TutorialActivity
 import com.icicle.cake.util.SharedPreferenceManager
 import com.icicle.cake.util.VerticalSpaceDecoration
 import com.icicle.cake.util.ViewModelFactory
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by lazy { ViewModelProviders.of(this, ViewModelFactory(this))[MainViewModel::class.java] }
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         )
         binding.reservationRecyclerView.apply {
             adapter = ReservationRecyclerAdapter(viewModel)
-            reservationRecyclerView.addItemDecoration(VerticalSpaceDecoration(64))
+            addItemDecoration(VerticalSpaceDecoration(64))
         }
         binding.vm = viewModel
 
