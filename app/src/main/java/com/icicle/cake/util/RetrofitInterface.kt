@@ -10,7 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-private const val URL = "http://api.junhoyeo.xyz"
+private const val URL = "http://cake.seunghyun.in"
 private val retrofit = Retrofit.Builder()
     .baseUrl(URL)
     .addConverterFactory(GsonConverterFactory.create())
